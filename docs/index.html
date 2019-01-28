@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>My Design System</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <script src="./bundle.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+
+        <label>Valore Bonifico</label>
+        <mydesignsystem-input-currency name="valore-bonifico" num="889271"></mydesignsystem-input-currency>
+    
+        <script>
+            var element = document.querySelector("mydesignsystem-input-currency[name='valore-bonifico']");
+            element.addEventListener("value-change", function (event) { 
+                console.log(event.detail());
+            }, false);
+        </script>
+
+    </body>
+
+</html>

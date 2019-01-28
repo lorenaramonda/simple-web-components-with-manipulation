@@ -1,0 +1,28 @@
+.mds-input-currency {
+
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #1ccce3;
+    margin:0;
+	border:0;
+	padding:0;
+	display:inline-block;
+	vertical-align:middle;
+	white-space:normal;
+	background:none;
+	line-height:1;
+    font-size:13px;
+
+    max-width: 300px;
+    
+    &--danger {
+        border-top: #ff0303;
+    }
+
+    &__input {
+        width: 200px;
+    }
+    &__appendix {
+        width: 40px;
+        background-color: #3fcc1c;
+    }
+}
