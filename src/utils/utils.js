@@ -11,10 +11,3 @@ export const toNumber = (c) => {
     if (!Number.isFinite(n)) return 0;
     return n;
 };
-
-export const validUrl = (str) => {
-    if ((str) && (!str.match(/^[a-zA-Z]+:\/\//))) {
-        str = "http://" + str;
-    }
-    return str;
-};

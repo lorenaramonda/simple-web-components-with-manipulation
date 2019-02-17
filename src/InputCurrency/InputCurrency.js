@@ -14,9 +14,6 @@ const emitChangeValue = (element) => {
 
 const bindInputEvents = (element, input) => {
 
-    
-
-    console.log("hello!");
     input.addEventListener("blur", () => {
         const transformedInput = input.value.replace(/\D,/g, "");
         const sanitizedInput = !isNaN(parseFloat(transformedInput)) ? transformedInput : "0";
@@ -46,8 +43,17 @@ class InputCurrency extends HTMLElement {
         return [
             "disabled",
             "error",
-            "num"
+            "num",
+            "label"
         ];
+    }
+
+    get label () {
+        return this.getAttribute("label");
+    }
+
+    set label(newValue) {
+        this.setAttribute("label", newValue);
     }
 
     get num () {
@@ -71,15 +77,11 @@ class InputCurrency extends HTMLElement {
     }
 
     get error () {
-        return this.hasAttribute("error");
+        return this.getAttribute("error");
     }
 
     set error (newValue) {
-        if (newValue) {
-            this.setAttribute("error", "");
-        } else {
-            this.removeAttribute("error");
-        }
+        this.setAttribute("error", newValue);
     }
 
     connectedCallback () {
@@ -92,11 +94,22 @@ class InputCurrency extends HTMLElement {
         }
     }
 
-    setError(input){
-        if(this.error){
-            input.classList.add("input-style1-danger");
+    setLabel(label){
+        if(this.label){
+            label.innerText = this.label;
         }else{
-            input.classList.remove("input-style1-danger");
+            label.innerText = "";
+        }
+    }
+
+    setError(input, error){
+
+        if(this.error){
+            input.classList.add("mds-input-currency__input--error");
+            error.innerText = this.error;
+        }else{
+            input.classList.remove("mds-input-currency__input--error");
+            error.innerText = "";
         }
     }
 
@@ -107,6 +120,8 @@ class InputCurrency extends HTMLElement {
     attributeChangedCallback (name) {
         window.requestAnimationFrame(() => {
             const input = this.querySelector("input");
+            const label = this.querySelector("label");
+            const error = this.querySelector(".mds-input-currency__error");
 
             if(!input){
                 return;
@@ -115,8 +130,10 @@ class InputCurrency extends HTMLElement {
             switch(name){
             case "num":
                 return this.setValue(input);
+            case "label":
+                return this.setLabel(label);
             case "error":
-                return this.setError(input);
+                return this.setError(input, error);
             case "disabled":
                 return this.setDisabled(input);
             }
@@ -127,10 +144,13 @@ class InputCurrency extends HTMLElement {
 
         const child = domUtils.htmlToDomElement(template);
         const domInputElement = child.querySelector("input");
+        const domLabelElement = child.querySelector("label");
+        const domErrorElement = child.querySelector(".mds-input-currency__error");
 
         this.setDisabled(domInputElement);
-        this.setError(domInputElement);
+        this.setError(domInputElement, domErrorElement);
         this.setValue(domInputElement);
+        this.setLabel(domLabelElement);
         bindInputEvents(this, domInputElement);
 
         domUtils.nextTick().then(() => {

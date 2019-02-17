@@ -10,8 +10,9 @@
     </head>
     <body>
 
-        <label>Valore Bonifico</label>
-        <mydesignsystem-input-currency name="valore-bonifico" num="889271"></mydesignsystem-input-currency>
+        <mydesignsystem-input-currency name="valore-bonifico" num="889271" label="valore bonifico"></mydesignsystem-input-currency>
+        
+        <mydesignsystem-input-currency name="valore-bollo" num="2" error="Il valore del bollo non può essere superiore a 1,00€" label="valore bollo (max 1,00€)"></mydesignsystem-input-currency>
     
         <script>
             var element = document.querySelector("mydesignsystem-input-currency[name='valore-bonifico']");
