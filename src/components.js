@@ -1,5 +1,5 @@
 import InputCurrency from "./InputCurrency/InputCurrency";
-// import ModalConfirm from "./ModalConfirm/ModalConfirm";
+import CollapseButton from "./CollapseButton/CollapseButton";
 
 window.customElements.define("mydesignsystem-input-currency", InputCurrency);
-// window.customElements.define("mydesignsystem-modal-confirm", ModalConfirm);
+window.customElements.define("mydesignsystem-collapse-button", CollapseButton);
